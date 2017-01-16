@@ -131,21 +131,18 @@ function setup() {
   openSet.push(start);
 
   recordTime("Setup");
-}
 
-function draw() {
-  // Am I still searching?
-  if (openSet.length > 0) {
+  drawGrid();
+
+  var current;
+  while (openSet.length > 0) {
     startTime();
 
-    var current = findNextSpot();
+    current = findNextSpot();
 
     // Did I finish?
     if (current === end) {
-      noLoop();
-      console.log("DONE!");
-      createP('Completed!');
-      logTimings();
+      break;
     }
 
     // Best option moves from openSet to closedSet
@@ -156,20 +153,18 @@ function draw() {
     addNeighborsToOpenSet(current);
 
     recordTime("Algorithm");
-  } else {
-    // Uh oh, no solution
-    noLoop();
-    console.log('no solution');
-    createP('No solution.');
-    logTimings();
-    return;
   }
 
   drawGrid();
 
   path = calcPath(current);
   drawPath(path);
+
+  noLoop();
+  logTimings();
 }
+
+function draw() { }
 
 
 // Find next spot
