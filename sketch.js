@@ -132,8 +132,6 @@ function setup() {
 
   recordTime("Setup");
 
-  drawGrid();
-
   var current;
   while (openSet.length > 0) {
     startTime();
